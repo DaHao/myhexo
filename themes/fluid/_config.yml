@@ -178,7 +178,7 @@ post:
       format: "{} 次"
   updated:
     enable: false
-    content: 本文最后更新于：
+    content: Last updated：
   toc:  # 文章右侧目录
     enable: true
     headingSelector: h1,h2,h3,h4,h5,h6

@@ -1,0 +1,42 @@
+search:
+  title: 你想找什麼？
+  keyword: keyword
+  status:
+    success: v
+    error: x
+
+postTotal: 共計 %d 篇文章
+
+paginator:
+  pre: Previous
+  next: Next
+
+post:
+  toc: 目錄
+
+home:
+  title: Home
+
+archive:
+  title: 文章
+  subtitle: 文章
+
+tag:
+  title: Tags
+  subtitle: Tag
+
+category:
+  title: Categories
+  subtitle: Category
+
+about:
+  title: About
+  subtitle: About
+
+page404:
+  title: Page not found
+  subtitle: Oops, Page not found...
+
+links:
+  title: Links
+  subtitle: Links
