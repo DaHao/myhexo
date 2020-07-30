@@ -1,0 +1,354 @@
+#---------------------------
+# Hexo Fluid
+# Author: Fluid-dev organization
+# Github: https://github.com/fluid-dev/hexo-theme-fluid
+#
+# Docs：https://hexo.fluid-dev.com/docs/guide/
+#---------------------------
+
+
+#---------------------------
+# 全域
+# Site
+#---------------------------
+favicon: /img/favicon.png # 網站標簽頁的 icon
+
+apple_touch_icon: /img/apple-touch-icon.png # 用於蘋果設備的 icon
+
+title_join_string: ' - '  # 瀏覽器標簽頁中的標題分隔符，效果： 文章名 - 站點名
+
+force_https: false  # 強制所有鏈接升級為 HTTPS（適用於圖片等資源出現 HTTP 混入報錯）
+
+highlight: # 代碼高亮
+  enable: true
+  theme: tomorrow-night-eighties # available: github-v2 | tomorrow | tomorrow-night | tomorrow-night-eighties，更多主題可從 https://jmblog.github.io/color-themes-for-google-code-prettify/ 獲取，保存為 `*.min.css` 到 `source/lib/prettify/`，在其中 .prettyprint{ background: ***; ...} 的background 值後加上 !important，例如：.prettyprint{background:#fafbfc!important; ...}
+
+fun_features: # 一些好玩的功能
+  typing: # 為 subtitle 添加打字機效果
+    enable: true
+    typeSpeed: 70 # 打印速度
+    cursorChar: "_" # 遊標字符
+    loop: false # 是否循環播放效果
+  anchorjs: # 為文章內容中的標題添加錨圖標
+    enable: true
+    element: h1,h2,h3,h4,h5,h6
+    placement: right # icon放置的位置： left | right
+    visible: hover # 默認懸浮顯示，可選：hover（鼠標在元素上懸浮時顯示） | always（一直顯示） | touch（移動端觸摸顯示）
+    icon: "" # 可選：§ | # | ❡ 等，留空則為默認效果
+  mouse_click:  # 鼠標點擊動效
+    enable: false
+    style: values # 目前設置兩個值：values（價值觀詞匯） | love（愛心）
+
+color:  # 主體顏色配置，可以從這里尋找啟发： https://www.webdesignrankings.com/resources/lolcolors/
+  body_bg_color: "#eee"
+  navbar_bg_color: "#2f4154"
+  navbar_text_color: "white"
+  text_color: "#3c4858"
+  link_color: "#3c4858"
+  link_hover_color: "#1abc9c"
+  board_color: "#fff"
+
+custom_js:   # 指定自定義 js 文件路徑，路徑是相對 source 目錄，如 /js/custom.js
+custom_css:   # 指定自定義 css 文件路徑，路徑是相對 source 目錄，如 /css/custom.css
+custom_html: ''  # 自定義底部 HTML 內容（位於 footer 上方），也可用於外部引入 js css 這些操作，注意不要和 post.custom 配置沖突
+
+web_analytics:  # 網頁訪問統計
+  enable: false
+  baidu:  # 百度統計的Key，參見 https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376 代碼獲取中 hm.js? 後邊的字符串
+  google:  # Google統計的Tracking ID，參見 https://analytics.google.com/analytics/web/
+  tencent:  # 騰訊統計的H5 App id，參見 https://mta.qq.com/h5/manage/ctr_app_manage
+  woyaola:  # 51.la站點統計ID，參見 https://www.51.la/user/site/index
+  cnzz:  # 友盟/cnzz站點統計web_id，參見 https://web.umeng.com/main.php?c=site&a=show
+
+lazyload: # 對頁面中的圖片進行懶加載處理，可見範圍外的圖片不會加載
+  enable: true
+  onlypost: false  # 僅在文章頁使用懶加載
+
+smooth_scroll: # 平滑滾動效果，服務器加載過慢可能會影響滾動，請慎用
+  enable: false
+
+daovoice:  # 在線客服 Daovoice 參考：http://dashboard.daovoice.io
+  enable: false # 是否開啟在線客服聊天
+  appid: ''  # 應用ID設置
+
+aplayer:  # 音樂播放器，注意不能與 hexo-tag-aplayer 插件共用
+  enable: false
+  autoplay: false  # 音頻自動播放
+  loop: 'all'  # 音頻循環播放, 可選值: 'all', 'one', 'none'
+  order: 'random'  # 播放順序，可選值: 'list', 'random'
+  theme: '#b7daff'  # 主題色
+  songs:  # 歌曲列表，必須傳入下列各參數，其中 url 與 cover 在本地需存於 source 目錄，更多參數見文檔：https://aplayer.js.org/#/zh-Hans/?id=%E5%8F%82%E6%95%B0
+    - { name: 'name', artist: 'artist', url: '/songs/test.mp3', cover: '/img/cover.jpg' }
+    - { name: 'name', artist: 'artist', url: 'https://...url.mp3', cover: 'https://...cover.jpg' }
+
+#---------------------------
+# 頁頭
+# Header
+#---------------------------
+navbar:
+  blog_title:  'Hao Hard To Live' # 導航欄左側的標題，為空則按 hexo config.title 顯示
+  menu:  # 可自行增減，若想減去某個入口，可以將值留空，顯示文本關聯 languages
+    home: /
+    archive: /archives/
+  # - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
+  #  - { key: 'archive', link: '/archives/', icon: 'iconfont icon-home-fill' }
+  #  - { key: 'category', link: '/categories/', icon: 'iconfont icon-home-fill' }
+  #  - { key: 'tag', link: '/tags/', icon: 'iconfont icon-home-fill' }
+  #  - { key: 'about', link: '/about/', icon: 'iconfont icon-home-fill' }
+    #links: /links/  # 友鏈頁，把前面#去掉即可展示
+
+search: # 搜索欄
+  enable: true
+  path: /local-search.xml # 文件引用地址，默認是下方生成位置，也可以將生成後的 local-search.xml 上傳到其它位置引用，如：https://www.example.com/local-search.xml
+  generate_path: /local-search.xml # 文件生成位置，必須為相對位置
+  field: post
+  content: true
+
+scroll_down_arrow:  # 向下滾動的箭頭
+  enable: true
+  banner_height_limit: 90  # 頭圖高度不小於指定比例，才顯示箭頭
+  scroll_after_turning_page: true  # 翻頁後自動滾動
+
+banner_parallax: true  # 頭圖滾動視差
+
+
+#---------------------------
+# 頁腳
+# Footer
+#---------------------------
+footer:
+  statistics:  # 統計網站 PV、UV，使用的是不蒜子，顯示在頁腳  *不蒜子近期連接不穩定，謹慎開啟
+    enable: false
+    pv_format: "總訪問量 {} 次"  # 顯示的文本，{}是數字的占位符（必須包含)，下同
+    uv_format: "總訪客數 {} 人"
+
+  beian:  # The footer of China's website policy, other areas keep disable
+    enable: false
+    icp_text: 京ICP證123456號 # ICP證號
+    police_text: 京公網安備12345678號 # 公安備案號，不填則只顯示ICP
+    police_code: 12345678 # 公安備案的編號，用於URL跳轉查詢
+    police_icon: /img/police_beian.png # 公安備案的圖片. 為空時不顯示備案圖片
+
+scroll_top_arrow:  # 向頂部滾動的箭頭
+  enable: true
+
+
+#---------------------------
+# 首頁
+# Index Page
+#---------------------------
+index:
+  banner_img: /img/default.png  # 首頁 Banner 頭圖，以下相同
+  banner_img_height: 100  # 頭圖高度，屏幕百分比，available: 0 - 100
+  post_default_img: '' # 默認的文章封面圖，當沒有指定 index_img 時會使用該圖片，若都為空則不顯示任何圖片
+  slogan:  # 首頁副標題的獨立設置
+    enable: true  # 為 false 則不顯示任何內容
+    text: 'Fxxk off！Human！' # 為空則按 hexo config.subtitle 顯示
+  auto_excerpt:
+    enable: true
+  post_url_target: _self  # available: _blank | _self
+  post_meta: # 是否顯示文章信息（時間、分類、標簽）
+    date: true
+    category: true
+    tag: true
+
+# 通過 hexo new page 命令創建的頁面
+# Custom Page
+page:
+  banner_img: /img/default.png
+  banner_img_height: 70  # available: 0 - 100
+
+#---------------------------
+# 文章頁
+# Post Page
+#---------------------------
+post:
+  banner_img: /img/default.png
+  banner_img_height: 70  # available: 0 - 100
+  meta:  # 文章標題下方的信息
+    date:  # 文章日期
+      enable: true
+      format: "dddd, MMMM Do YYYY, h:mm a"  # 格式參照 ISO-8601 日期格式化
+    wordcount:  # 字數統計
+      enable: true
+      format: "{} 字"  # 顯示的文本，{}是數字的占位符（必須包含)，下同
+    min2read:  # 閱讀時間
+      enable: true
+      format: "{} 分鐘"
+    views:  # 閱讀次數，統計基於不蒜子  *不蒜子近期連接不穩定，謹慎開啟
+      enable: false
+      format: "{} 次"
+  updated:
+    enable: false
+    content: Last updated：
+  toc:  # 文章右側目錄
+    enable: true
+    headingSelector: h1,h2,h3,h4,h5,h6
+  copyright:  # 版權聲明
+    enable: true
+    content: '本博客所有文章除特別聲明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0協議</a> 。轉載請注明出處！'
+  prev_next:  # 文章底部上一篇下一篇功能
+    enable: true
+  custom:  # 文章底部自定義內容
+    enable: false
+    content: '<img src="https://octodex.github.com/images/jetpacktocat.png" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">' # 自定義區域，支持 HTML，可自行插入讚賞碼、公眾號二維碼等內容
+  comments:  # 評論
+    enable: false  # 開啟評論
+    type: disqus  # 指定使用的評論模塊  available: disqus | valine | gitalk | utterances | changyan | livere  推薦 utterances
+  image_zoom:  # 文章圖片可點擊放大
+    enable: true
+  math:  # 數學公式，開啟之前需要更換 Markdown 渲染器，否則覆雜公式會有兼容問題，具體請見 https://hexo.fluid-dev.com/docs/guide/#數學公式
+    enable: false
+    specific: false  # 開啟後，只有在文章 Front-matter 里指定 `math: true` 才會在文章頁啟動公式轉換，以便在頁面不包含公式時提高加載速度
+    engine: mathjax  # 公式引擎  available: mathjax | katex
+
+#---------------------------
+# 評論
+# Comments
+#---------------------------
+
+# 開啟評論在上方的 post.comments 配置
+
+# utterances
+# You can install utterances with https://utteranc.es/ and generate your configuration
+utterances:
+  repo:
+  issue_term:
+  label: utterances
+  theme: github-light
+  crossorigin: anonymous
+
+# Disqus
+# 國內用戶不要用，已被墻
+disqus:
+  shortname: # your shortname
+
+# Gitalk
+# You can get yout ClientID and ClientSecret from https://github.com/settings/applications/new
+# More info available at https://github.com/gitalk/gitalk#options
+gitalk:
+  clientID:                     # GitHub Application Client ID
+  clientSecret:                 # GitHub Application Client Secret
+  repo:                         # The repo to store comments
+  owner:                        # GitHub repository owner. Can be personal user or organization.
+  admin:                        # GitHub repo owner and collaborators, only these guys can initialize github issues, should be like "['admin']" or "['admin1','admin2']"
+  id: location.pathname         # The unique id of the page. Length must less than 50.
+  language: zh-CN               # Localization language key, en, zh-CN and zh-TW are currently available.
+  labels: "['Gitalk']"          # GitHub issue labels.
+  perPage: 15                   # Pagination size, with maximum 100.
+  pagerDirection: last          # Comment sorting direction, available values are last and first.
+  distractionFreeMode: false    # Facebook-like distraction free mode.
+  createIssueManually: true     # By default, Gitalk will create a corresponding github issue for your every single page automatically when the logined user is belong to the admin users. You can create it manually by setting this option to true.
+
+# Valine
+# You can get your appid and appkey from https://leancloud.cn
+# More info available at https://valine.js.org
+valine:
+  appid:  # your leancloud application appid
+  appkey:  # your leancloud application appkey
+  notify: false # mail notifier, See: https://github.com/xCss/Valine/wiki
+  verify: false # Verification code
+  placeholder: 說點什麽 # comment box placeholder
+  avatar: retro # gravatar style https://valine.js.org/avatar.html
+  pageSize: 10 # pagination size
+
+# Changyan
+# You can get your appid from http://changyan.kuaizhan.com/setting/common/isv-mgr
+# Install: http://changyan.kuaizhan.com/static/help/f-fitself.html
+changyan:
+  appid: ''            # your changyan application appid        # 暢言ID
+  conf: ''             # conf                                   # 暢言設置
+  notify: false        # beian warning message                  # 備案提示
+  libopen: true        # open laboratory                        # 暢言實驗室功能開關
+  cyEmoji: true        # comments emoji                         # 評論表情
+  cyWallsplugin: true  # Hot text matching                      # 熱文配圖
+  cyReping: true       # hot comments                           # 熱門評論
+  cyReward: true       # reward                                 # 打賞
+  cyQing: true         # Light comment                          # 輕評論
+  cyHotusers: true     # User evaluation                        # 熱評用戶
+  cyHotnews: true      # Hot news                               # 熱門新聞
+  cyHotnewswall: true  # News wall                              # 新聞墻
+  cyPk: ''             # Topic debate                           # 辯論
+  cyPoll: true         # vote                                   # 投票
+  cyBarrage: true      # Picture barrage                        # 圖片彈幕
+  cyTvbarrage: true    # Video barrage                          # 視頻彈幕
+
+# Livere 來必力
+# You can get your uid from https://www.livere.com/my_Livere
+livere:
+  uid: ''            # your livere application uid        # 來必力ID
+
+
+#---------------------------
+# 歸檔頁
+# Archive Page
+#---------------------------
+archive:
+  banner_img: /img/default.png
+  banner_img_height: 80  # available: 0 - 100
+  subtitle:  # 打字機內容
+
+#---------------------------
+# 分類歸檔頁
+# Categories Page
+#---------------------------
+category:
+  banner_img: /img/default.png
+  banner_img_height: 80  # available: 0 - 100
+  subtitle:  # 打字機內容
+
+#---------------------------
+# 標簽歸檔頁
+# Tags Page
+#---------------------------
+tag:
+  banner_img: /img/default.png
+  banner_img_height: 80  # available: 0 - 100
+  subtitle:  # 打字機內容
+  tagcloud: # 標簽雲
+    min_font: 15
+    max_font: 30
+    unit: px  # 字號單位
+    start_color: "#BBBBEE"
+    end_color: "#337ab7"
+
+
+#---------------------------
+# 關於頁
+# About Page
+#---------------------------
+about:  # 以下僅為頁面頂部的基本信息，更多內容請在 ./pages/about.md 中編輯，支持 markdown 和 HTML
+  banner_img: /img/default.png
+  banner_img_height: 80  # available: 0 - 100
+  subtitle:  # 打字機內容
+  avatar: /img/avatar.png # 頭像
+  name: myname
+  introduce: info / info / info # 支持 HTML
+  icons: # 更多圖標可從 https://fontawesome.com/v5.10.0/icons?d=gallery 查找，並以 "圖標名: url" 的格式添加在下方
+    "fab fa-github": https://github.com
+    "fab fa-twitter": https://twitter.com
+    "fab fa-weixin qrcode":  # 添加 qrcode 後，點擊不再跳轉，而是懸浮二維碼，因此值需要是二維碼圖片地址
+
+
+#---------------------------
+# 404頁
+# 404 Page
+#---------------------------
+page404:
+  banner_img: /img/default.png
+  banner_img_height: 100  # available: 0 - 100
+  subtitle: 'Page not found'  # 打字機內容
+
+
+#---------------------------
+# 友鏈頁
+# Links Page
+#---------------------------
+links:
+  banner_img: /img/default.png
+  banner_img_height: 80  # available: 0 - 100
+  subtitle:  # 打字機內容
+  items:  # 鍵是友鏈標題、值的列表內容分別是 [鏈接, 簡介, 頭像]，頭像可以省略
+    Fluid Docs: [https://hexo.fluid-dev.com/docs/, 主題使用指南, /img/favicon.png]
+    Fluid Repo: [https://github.com/fluid-dev/hexo-theme-fluid, 主題 GitHub 倉庫, /img/favicon.png]
+    Fluid Changelog: [https://github.com/fluid-dev/hexo-theme-fluid/blob/master/Changelog.md, 主題更新日志, /img/favicon.png]
