@@ -186,7 +186,7 @@ post:
     headingSelector: h1,h2,h3,h4,h5,h6
   copyright:  # 版權聲明
     enable: true
-    content: '本博客所有文章除特別聲明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0協議</a> 。轉載請注明出處！'
+    content: '本 Blog 所有文章除特別聲明外，皆採用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0協議</a> 。轉載請註明出處！'
   prev_next:  # 文章底部上一篇下一篇功能
     enable: true
   custom:  # 文章底部自定義內容

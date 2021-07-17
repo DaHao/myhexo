@@ -26,7 +26,7 @@ hexo.on('generateBefore', function () {
 
   // Merge configs in /source/_data/fluid_static_prefix.yml into hexo.theme.config.
   const configPath = path.join(__dirname, '../_static_prefix.yml');
-  const yamlDoc = yaml.safeLoad(fs.readFileSync(configPath, 'utf8'));
+  const yamlDoc = yaml.load(fs.readFileSync(configPath, 'utf8'));
   hexo.theme.config.static_prefix = _.merge({}, yamlDoc, staticPrefix);
   this.log.debug('Fluid: theme static_prefix config merged');
 
