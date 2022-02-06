@@ -1,11 +1,12 @@
-title: HAO HARD TO LIVE
+title: Hao Hard to Live
 subtitle: ''
 description: ''
 keywords: null
 author: Hao
 language: en
 timezone: ''
-url: 'http://yoursite.com'
+# url: 'http://yoursite.com'
+url: http://www.haohardtolive.com/
 root: /
 permalink: ':year/:month/:day/:title/'
 permalink_defaults: null
@@ -20,7 +21,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: ':lang'
 skip_render: null
-new_post_name: ':title.md'
+new_post_name: ':year-:month-:day-:title.md'
 default_layout: post
 titlecase: false
 external_link:
