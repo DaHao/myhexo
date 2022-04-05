@@ -5,6 +5,8 @@ tags:
 index_img: 'https://cdn.pixabay.com/photo/2020/07/28/19/41/cat-5446093_1280.jpg'
 banner_img: 'https://cdn.pixabay.com/photo/2020/07/28/19/41/cat-5446093_1280.jpg'
 date: 2022-02-19 13:25:38
+categories:
+  - Tech
 ---
 # Mac 更新至 Monterey 後，觸控板無法使用
 

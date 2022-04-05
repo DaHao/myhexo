@@ -305,7 +305,7 @@ navbar:
   menu:
     - { key: "home", link: "/", icon: "iconfont icon-home-fill", name: "Home" }
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill", name: "Archives" }
-      # - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
+    - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill", name: "Categories" }
       # - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
