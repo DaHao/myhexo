@@ -7,7 +7,7 @@ banner_img: /img/post/volodymyr-hryshchenko-H27jNHovB-4-unsplash.jpg
 tags:
   - Troubleshooting
 categories:
-  - [Tech, Program]
+  - [Tech, Program, Javascript]
 ---
 # Javascript - 為什麼 Error 是空物件？
 在研究 Async.js waterfall 的時候，感覺像被 javascript 給陰到了一樣
