@@ -6,7 +6,7 @@ index_img: 'https://cdn.pixabay.com/photo/2016/12/30/17/27/cat-1941089_1280.jpg'
 banner_img: 'https://cdn.pixabay.com/photo/2016/12/30/17/27/cat-1941089_1280.jpg'
 date: 2022-02-06 15:18:30
 categories:
-  - [Tech, Program]
+  - [Tech, Program, Javascript]
 ---
 
 # Axios 替換 Request 上傳檔案
