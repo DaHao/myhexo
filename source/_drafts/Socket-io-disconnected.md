@@ -13,16 +13,60 @@ categories:
 
 <hr/>
 
-> User 如果直接關掉 browser 的話，terminal 的 websocket 連線需要中斷並刪除 pod
+# 前言
+遇到一個需求，當 User 關掉 Browser 的話，Frontend 需要送 Request 到 Backend 去執行某些動作
 
-困難點在哪？  
----
-在 socket-io v3 的版本中，只要一按 browser tab 的 [x] 按鈕，socket 馬上就會 disconnect，不管有沒有 `confirm` 之類的動作都一樣    
+# 估狗大神救救我啊～
+拜了一下狗狗，發覺好像不是很難，Close Browser 有個叫 `beforeunload` 的 Event 可以觸發
 
-因為 socket disconnect，delete pod 的 action 就沒辦法送到 backend 進行處理  
+參考了一下資料，產出如下的程式碼
 
-Solution   
----
+```javascript
+  // close window
+  useEffect(() => {
+    const handleWindowClosed = (event) => {
+      if (name) { // do something }
+    };
+
+    window.addEventListener('beforeunload', handleWindowClosed);
+    return () => {
+      window.removeEventListener('beforeunload', handleWindowClosed);
+    };
+  }, [name]);
+```
+
+馬上來測試看看！
+
+# Socket-io client: 下班啦～下班啦～
+一測試就馬上翻了第一次車，測試的時候發現，為什麼 Backend 沒有做我送過去的 Request？
+
+再做了多次的測試之後，發現當我一關掉 Browser Tab 的時候，Socket-io 就會馬上就斷開連線(facemood)
+
+因為 `do something` 是靠 Socket-io 連線將 Request 送到後端的，所以一但斷線的話後端就收不到 Request
+
+咦？怎麼會這樣？
+
+好吧，既然你這麼急著走的話，那我加一個 `Confirm` 去中斷你的動作總可以了吧？
+
+哼哼，沒錯！，測試起來還是我太天真了…… Socket-io 還是斷線給我看
+<br/>
+
+隔壁的同事好心幫我測試了一下，在他們的 Project 沒有測到斷線的情形。
+
+奇怪了…… 怎麼會這樣呢？(facemood)
+<br/>
+
+找了一些資料發現，在 Socket-io v3 的版本中，只要一按 Browser Tab 的 [x] 按鈕，Socket-io 馬上就會 disconnect，不管有沒有做 `confirm` 之類的動作都一樣
+
+隔壁同事是 v2 的版本所以安全下莊……
+
+哪泥？還有這種事？升級後反而不能連線了！
+
+# 所以我說，那個 Solution 呢？
+
+
+
+
 這個功能其實是有辦法達成的
 ```js
   // socket-io client connect
@@ -64,12 +108,6 @@ socket.io-client 在使用者關掉 browser tab 的時候，會送出 disconnet 
 
 後端沒收到 action 的情況下，自然不會去 delete pod
 
-結論
----
-如果要升級 socket-io 的話，不只有 xportal 需要升級，wtf 也需要做升級   
-
-因此問題暫不處理，等到升級後再回來看
-
 Ref.
 ---
 https://github.com/socketio/socket.io-client/issues/1451
@@ -77,7 +115,6 @@ https://github.com/socketio/socket.io-client/issues/1451
 
 在 yee 的協助下測出了更多 knowhow
 
-1. 使用 socket-io v2 版本的 socket 連線不會中斷 (目前為 v3)
 
 2. 在特定情形下使用 `event.stopImmediatePropagation()` 可以保持連線不中斷
 
