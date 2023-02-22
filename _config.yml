@@ -59,8 +59,6 @@ ignore: null
 theme: fluid
 deploy:
   type: git
-  repo: 'https://github.com/DaHao/DaHao.github.io.git'
+  repo: 'git@github.com:DaHao/DaHao.github.io.git'
   branch: master
-  token: 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
-  name: DaHao
-  email: jiash561@gmail.com
+  token: $HEXO_TOKEN
